@@ -1,0 +1,9 @@
+---
+permalink: scripts.js
+---
+
+{% set js %}
+{# {% include './js/example.js' %} #}
+{% endset %}
+
+{{ js | jsmin | safe }}
