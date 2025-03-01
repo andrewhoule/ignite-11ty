@@ -2,14 +2,14 @@ import cssnano from "cssnano";
 import postCssApply from "postcss-apply";
 import postCssCustomMedia from "postcss-custom-media";
 import postCssImport from "postcss-import";
-import postcssNesting from "postcss-nesting";
+import postCssNested from "postcss-nested";
 
 export default {
   map: "inline",
   plugins: [
     postCssImport,
     postCssApply,
-    postcssNesting,
+    postCssNested,
     postCssCustomMedia,
     cssnano
   ]
