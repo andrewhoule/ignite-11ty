@@ -1,3 +1,4 @@
+import autoprefixer from "autoprefixer";
 import cssnano from "cssnano";
 import postCssApply from "postcss-apply";
 import postCssCustomMedia from "postcss-custom-media";
@@ -11,6 +12,7 @@ export default {
     postCssApply,
     postCssNested,
     postCssCustomMedia,
+    autoprefixer,
     cssnano
   ]
 };

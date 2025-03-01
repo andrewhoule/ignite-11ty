@@ -15,6 +15,7 @@
     "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-img": "^5.0.0",
     "@jgarber/eleventy-plugin-postcss": "^3.0.0",
+    "autoprefixer": "^10.4.20",
     "clean-css": "^5.3.3",
     "cssnano": "^7.0.6",
     "html-minifier-terser": "^7.2.0",
