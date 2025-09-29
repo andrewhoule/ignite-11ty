@@ -48,6 +48,11 @@ export default function(eleventyConfig) {
 			sizes: "auto",
 		},
 	});
+
+	// BrowserSync Settings
+	eleventyConfig.setServerOptions({
+    showAllHosts: true
+  });
 };
 
 export const config = {
