@@ -21,6 +21,7 @@
     "autoprefixer": "^10.4.20",
     "concurrently": "^9.2.1",
     "cssnano": "^7.0.6",
+    "dotenv": "^17.2.3",
     "html-minifier-terser": "^7.2.0",
     "open-cli": "^8.0.0",
     "postcss-apply": "^0.12.0",

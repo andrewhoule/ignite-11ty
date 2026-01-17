@@ -3,6 +3,9 @@ import htmlMin from 'html-minifier-terser';
 import { minify } from 'terser';
 import postcssPlugin from "@jgarber/eleventy-plugin-postcss";
 import sitemap from "@quasibit/eleventy-plugin-sitemap";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default function(eleventyConfig) {
 	// Use PostCSS
@@ -10,10 +13,9 @@ export default function(eleventyConfig) {
 
 	// Pass assets to site build
 	eleventyConfig.addPassthroughCopy('src/assets');
-	eleventyConfig.addPassthroughCopy('src/robots.txt');
 
 	// Watch JS
-	eleventyConfig.addWatchTarget('./src/js/');
+	eleventyConfig.addWatchTarget('./src/assets/js/');
 
 	// Minfiy HTML
 	eleventyConfig.addTransform('htmlMin', function (content) {
@@ -68,7 +70,7 @@ export default function(eleventyConfig) {
 	// Sitemap
 	eleventyConfig.addPlugin(sitemap, {
     sitemap: {
-      hostname: "https://craftandfunction.com",
+      hostname: process.env.SITE_URL || "",
     },
   });
 };
