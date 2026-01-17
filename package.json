@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "npx @11ty/eleventy --serve & npx open-cli http://localhost:8080",
+    "prestart": "npx kill-port 8080",
+    "start": "concurrently \"npx @11ty/eleventy --serve\" \"wait-on http://localhost:8080 && npx open-cli http://localhost:8080\"",
     "build": "npx @11ty/eleventy"
   },
   "keywords": [],
@@ -16,7 +17,9 @@
     "@11ty/eleventy": "^3.0.0",
     "@11ty/eleventy-img": "^5.0.0",
     "@jgarber/eleventy-plugin-postcss": "^3.0.0",
+    "@quasibit/eleventy-plugin-sitemap": "^2.2.0",
     "autoprefixer": "^10.4.20",
+    "concurrently": "^9.2.1",
     "cssnano": "^7.0.6",
     "html-minifier-terser": "^7.2.0",
     "open-cli": "^8.0.0",
@@ -24,6 +27,7 @@
     "postcss-custom-media": "^11.0.5",
     "postcss-import": "^16.1.0",
     "postcss-nested": "^7.0.2",
-    "terser": "^5.37.0"
+    "terser": "^5.37.0",
+    "wait-on": "^9.0.3"
   }
 }

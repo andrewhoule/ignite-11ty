@@ -1,7 +1,8 @@
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
 import htmlMin from 'html-minifier-terser';
-import postcssPlugin from "@jgarber/eleventy-plugin-postcss";
 import { minify } from 'terser';
+import postcssPlugin from "@jgarber/eleventy-plugin-postcss";
+import sitemap from "@quasibit/eleventy-plugin-sitemap";
 
 export default function(eleventyConfig) {
 	// Use PostCSS
@@ -9,6 +10,7 @@ export default function(eleventyConfig) {
 
 	// Pass assets to site build
 	eleventyConfig.addPassthroughCopy('src/assets');
+	eleventyConfig.addPassthroughCopy('src/robots.txt');
 
 	// Watch JS
 	eleventyConfig.addWatchTarget('./src/js/');
@@ -52,6 +54,22 @@ export default function(eleventyConfig) {
 	// BrowserSync Settings
 	eleventyConfig.setServerOptions({
     showAllHosts: true
+  });
+
+	// Sitemap collection (exclude non-HTML assets like CSS)
+	eleventyConfig.addCollection("sitemap", function (collectionApi) {
+		return collectionApi.getAll().filter((item) => {
+			if (item?.data?.eleventyExcludeFromCollections) return false;
+			const outputPath = item?.outputPath || "";
+			return outputPath.endsWith(".html");
+		});
+	});
+
+	// Sitemap
+	eleventyConfig.addPlugin(sitemap, {
+    sitemap: {
+      hostname: "https://craftandfunction.com",
+    },
   });
 };
 
