@@ -73,6 +73,48 @@ export default function(eleventyConfig) {
       hostname: process.env.SITE_URL || "",
     },
   });
+
+	// Filter for meta
+	eleventyConfig.addFilter('meta', function ({
+		meta_description,
+		meta_image,
+		meta_title,
+		page_url,
+		site_title,
+		site_url,
+		title
+	}) {
+		const safeSiteUrl = site_url || "";
+		const safeTitle = title || "";
+		const safeSiteTitle = site_title || safeTitle;
+
+		const metaTitle =
+			meta_title ||
+			((safeTitle && page_url && page_url !== '/')
+				? `${safeTitle} | ${safeSiteTitle}`
+				: safeSiteTitle);
+
+		const metaUrl = (page_url && safeSiteUrl)
+			? new URL(page_url, safeSiteUrl).toString()
+			: (page_url || safeSiteUrl || "");
+
+		const metaDescription = meta_description || "";
+
+		let metaImage = "";
+		if (meta_image) {
+			const isAbsolute = /^https?:\/\//i.test(meta_image);
+			metaImage = isAbsolute
+				? meta_image
+				: (safeSiteUrl ? new URL(meta_image, safeSiteUrl).toString() : meta_image);
+		}
+
+		return {
+			description: metaDescription,
+			image: metaImage,
+			title: metaTitle,
+			url: metaUrl,
+		};
+	});
 };
 
 export const config = {

@@ -30,3 +30,9 @@ Barebones starter kit for simple 11ty projects.
 * The sitemap uses `SITE_URL` from `.env`
 * Update the `SITE_URL=...` value in `.env` when the production domain changes
 * `robots.txt` is generated from `src/system/robots.njk` and uses the same `SITE_URL`
+* Set `SITE_TITLE` in `.env` to control `site.title` for meta tags
+
+### Meta Front Matter
+
+* Set `meta_title`, `meta_description`, and `meta_image` in page front matter to customize meta tags
+* `meta_image` can be an absolute URL or a path relative to `SITE_URL` (e.g. `/assets/img/og.jpg`)
