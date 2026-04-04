@@ -1,0 +1,9 @@
+.page-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+.header-and-main {
+  flex: 1 0 100%;
+}

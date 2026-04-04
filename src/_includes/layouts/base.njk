@@ -33,9 +33,17 @@
 </head>
 
 <body>
-  <main class="page-wrap">
-    {{ content | safe }}
-  </main>
+  <div class="page-wrap">
+    <div class="header-and-main">
+      {% include "chrome/_header.njk" %}
+
+      <main class="main">
+        {{ content | safe }}
+      </main><!-- /.main -->
+    </div><!-- /.header-and-main -->
+
+    {% include "chrome/_footer.njk" %}
+  </div><!-- /.page-wrap -->
 
   <script src="/scripts.js"></script>
 </body>
